@@ -2,7 +2,7 @@ Summary:	Terminates connections for idle users
 Summary(pl):	Przerywa po³±czenia bezczynnych u¿ytkowników
 Name:		autolog
 Version:	0.40
-Release:	1
+Release:	2
 License:	GPL
 Group:		Daemons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/admin/idle/%{name}-%{version}.tar.gz
