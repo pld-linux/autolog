@@ -2,10 +2,10 @@ Summary:	Terminates connections for idle users.
 Summary(pl):	Przerywa po³±czenia bezczynnych u¿ytkowników.
 Name:		autolog
 Version:	0.34
-Release:	1
+Release:	2
 Copyright:	GPL
 Group:		Daemons
-Group(pl):	Demony
+Group(pl):	Przerywa
 Source:		ftp://sunsite.unc.edu/pub/Linux/system/Admin/idle/%{name}-%{version}.tgz
 Patch:		autolog-0.34.debian.diff
 Requires:	/etc/crontab.d
@@ -39,7 +39,21 @@ install autolog.8 $RPM_BUILD_ROOT/usr/man/man8
 install autolog.conf $RPM_BUILD_ROOT/etc
 install autolog.conf.5 $RPM_BUILD_ROOT/usr/man/man5
 
-gzip -9nf README
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* README 
+
+%post
+if test -r /var/run/crond.pid; then
+	/etc/rc.d/init.d/crond stop >&2
+	/etc/rc.d/init.d/crond start >&2
+else
+	echo "Run \"/etc/rc.d/init.d/crond start\" to activate autolog."
+fi
+
+%postun
+if test -r /var/run/crond.pid; then
+	/etc/rc.d/init.d/crond stop >&2
+	/etc/rc.d/init.d/crond start >&2
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -53,5 +67,11 @@ rm -rf $RPM_BUILD_ROOT
 /usr/man/man8/*
 
 %changelog
+* Tue Apr  6 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.34-2]
+- changed Group(pl),
+- added %post, %preun with restarting crond on install, upgrade and
+  uninstall autolog; this allow automated {de}activate autolog.
+
 * Fri Oct 16 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
 - initial rpm release.
