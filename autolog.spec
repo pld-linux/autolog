@@ -6,7 +6,7 @@ Release:	1
 License:	GPL
 Group:		Daemons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/Admin/idle/%{name}-%{version}.tar.gz
-Source1:	autolog.init
+Source1:	%{name}.init
 Prereq:		/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -41,7 +41,7 @@ install autolog.8.gz $RPM_BUILD_ROOT%{_mandir}/man8
 install autolog.conf.5.gz $RPM_BUILD_ROOT%{_mandir}/man5
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/%{name}
 
-gzip -9nf README CHANGES 
+gzip -9nf README CHANGES
 
 %clean
 rm -rf $RPM_BUILD_ROOT
