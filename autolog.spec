@@ -33,7 +33,7 @@ u¿ytkowników, grup, lini tty itp.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man{5,8},etc/cron.d}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man{5,8},%{_sysconfdir}/cron.d}
 
 install autolog $RPM_BUILD_ROOT%{_sbindir}
 install crontab $RPM_BUILD_ROOT/etc/cron.d/%{name}
