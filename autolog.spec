@@ -2,13 +2,13 @@ Summary:	Terminates connections for idle users.
 Summary(pl):	Przerywa po³±czenia bezczynnych u¿ytkowników.
 Name:		autolog
 Version:	0.34
-Release:	3
+Release:	4
 License:	GPL
 Group:		Daemons
 Group(pl):	Serwery
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/Admin/idle/%{name}-%{version}.tgz
 Patch0:		autolog-0.34.debian.diff
-Requires:	/etc/crontab.d
+Requires:	/etc/cron.d
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,10 +32,10 @@ u¿ytkowników, grup, lini tty itp.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{usr/sbin,usr/share/man/{man8,man5},etc/crontab.d}
+install -d $RPM_BUILD_ROOT/{usr/sbin,usr/share/man/{man8,man5},etc/cron.d}
 
 install autolog $RPM_BUILD_ROOT%{_sbindir}
-install crontab $RPM_BUILD_ROOT/etc/crontab.d/%{name}
+install crontab $RPM_BUILD_ROOT/etc/cron.d/%{name}
 install autolog.8 $RPM_BUILD_ROOT%{_mandir}/man8
 install autolog.conf $RPM_BUILD_ROOT%{_sysconfdir}
 install autolog.conf.5 $RPM_BUILD_ROOT%{_mandir}/man5
@@ -61,6 +61,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.gz
 %attr(700,root,root) %{_sbindir}/autolog
-%attr(700,root,root) /etc/crontab.d/autolog
+%attr(700,root,root) /etc/cron.d/autolog
 %attr(600,root,root) %config(noreplace) %{_sysconfdir}/autolog.conf
 %{_mandir}/man8/*
