@@ -20,7 +20,7 @@ case "$1" in
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/autolog
 	else
-		msg_Already_Running "Autolog"
+		msg_already_running "Autolog"
 		exit 1
 	fi
 	;;
@@ -30,7 +30,7 @@ case "$1" in
 		killproc autolog
 		rm -f /var/lock/subsys/autolog >/dev/null 2>&1
 	else
-		msg_Not_Running "Autolog"
+		msg_not_running "Autolog"
 		exit 1
 	fi
 	;;
