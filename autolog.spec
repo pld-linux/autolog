@@ -33,7 +33,7 @@ make CFLAGS="$RPM_OPT_FLAGS"
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{usr/sbin,usr/man/{man8,man5},etc/crontab.d}
 
-install autolog $RPM_BUILD_ROOT/usr/sbin
+install autolog $RPM_BUILD_ROOT%{_sbindir}
 install crontab $RPM_BUILD_ROOT/etc/crontab.d/%{name}
 install autolog.8 $RPM_BUILD_ROOT%{_mandir}/man8
 install autolog.conf $RPM_BUILD_ROOT/etc
@@ -61,7 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755) 
 %doc README.gz
-%attr(700,root,root) /usr/sbin/autolog
+%attr(700,root,root) %{_sbindir}/autolog
 %attr(700,root,root) /etc/crontab.d/autolog
 %attr(600,root,root) %config(noreplace) /etc/autolog.conf
 %{_mandir}/man8/*
