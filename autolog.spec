@@ -65,17 +65,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(700,root,root) /etc/crontab.d/autolog
 %attr(600,root,root) %config(noreplace) /etc/autolog.conf
 %{_mandir}/man8/*
-
-%changelog
-* Mon Jun 07 1999 Jan Rêkorajski <baggins@pld.org.pl>
-  [0.34-3]
-- spec cleanup
-
-* Tue Apr  6 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.34-2]
-- changed Group(pl),
-- added %post, %preun with restarting crond on install, upgrade and
-  uninstall autolog; this allow automated {de}activate autolog.
-
-* Fri Oct 16 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
-- initial rpm release.
