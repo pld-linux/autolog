@@ -5,8 +5,6 @@ Version:	0.40
 Release:	1
 License:	GPL
 Group:		Daemons
-Group(de):	Server
-Group(pl):	Serwery
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/Admin/idle/%{name}-%{version}.tar.gz
 Source1:	autolog.init
 Prereq:		/sbin/chkconfig
