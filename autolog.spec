@@ -5,9 +5,10 @@ Version:	0.40
 Release:	1
 License:	GPL
 Group:		Daemons
-Source0:	ftp://sunsite.unc.edu/pub/Linux/system/Admin/idle/%{name}-%{version}.tar.gz
+Source0:	ftp://sunsite.unc.edu/pub/Linux/system/admin/idle/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
-Prereq:		/sbin/chkconfig
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
