@@ -8,6 +8,7 @@ Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/Admin/idle/%{name}-%{version}.tar.gz
+Source1:	autolog.init
 Prereq:		chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -40,21 +41,23 @@ install autolog $RPM_BUILD_ROOT%{_sbindir}
 install autolog.conf $RPM_BUILD_ROOT%{_sysconfdir}
 install autolog.8.gz $RPM_BUILD_ROOT%{_mandir}/man8
 install autolog.conf.5.gz $RPM_BUILD_ROOT%{_mandir}/man5
-install autolog.init $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/%{name}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/%{name}
 
 gzip -9nf README CHANGES 
 
 %post
+/sbin/chkconfig --add autolog
 if [ ! -f /var/lock/subsys/crond ]; then
-	/etc/rc.d/init.d/crond restart >&2
+	/etc/rc.d/init.d/autolog restart >&2
 else
-	echo "Run \"/etc/rc.d/init.d/crond start\" to activate autolog."
+	echo "Run \"/etc/rc.d/init.d/autolog start\" to activate autolog."
 fi
 
-%postun
-if [ ! -f /var/lock/subsys/crond ]; then
-	/etc/rc.d/init.d/crond restart >&2
+%preun
+if [ ! -f /var/lock/subsys/autolog ]; then
+	/etc/rc.d/init.d/autolog stop >&2
 fi
+/sbin/chkconfig --del autolog
 
 %clean
 rm -rf $RPM_BUILD_ROOT
