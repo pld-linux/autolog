@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Daemons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/admin/idle/%{name}-%{version}.tar.gz
+# Source0-md5:	bcca87156acfdce9171acc90b35f9d0d
 Source1:	%{name}.init
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
