@@ -9,7 +9,7 @@ Group(pl):	Serwery
 Source:		ftp://sunsite.unc.edu/pub/Linux/system/Admin/idle/%{name}-%{version}.tgz
 Patch:		autolog-0.34.debian.diff
 Requires:	/etc/crontab.d
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Autolog is a program to automatically log off users who are idle for a specified
