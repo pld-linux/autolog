@@ -5,7 +5,7 @@ Version:	0.34
 Release:	2
 Copyright:	GPL
 Group:		Daemons
-Group(pl):	Przerywa
+Group(pl):	Serwery
 Source:		ftp://sunsite.unc.edu/pub/Linux/system/Admin/idle/%{name}-%{version}.tgz
 Patch:		autolog-0.34.debian.diff
 Requires:	/etc/crontab.d
