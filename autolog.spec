@@ -2,7 +2,7 @@ Summary:	Terminates connections for idle users.
 Summary(pl):	Przerywa po³±czenia bezczynnych u¿ytkowników.
 Name:		autolog
 Version:	0.34
-Release:	2
+Release:	3
 Copyright:	GPL
 Group:		Daemons
 Group(pl):	Serwery
@@ -31,7 +31,7 @@ make CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{usr/sbin,usr/man/{man8,man5},etc/crontab.d}
+install -d $RPM_BUILD_ROOT/{usr/sbin,usr/share/man/{man8,man5},etc/crontab.d}
 
 install autolog $RPM_BUILD_ROOT%{_sbindir}
 install crontab $RPM_BUILD_ROOT/etc/crontab.d/%{name}
@@ -67,6 +67,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Mon Jun 07 1999 Jan Rêkorajski <baggins@pld.org.pl>
+  [0.34-3]
+- spec cleanup
+
 * Tue Apr  6 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.34-2]
 - changed Group(pl),
