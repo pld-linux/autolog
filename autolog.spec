@@ -35,11 +35,11 @@ install -d $RPM_BUILD_ROOT/{usr/sbin,usr/man/{man8,man5},etc/crontab.d}
 
 install autolog $RPM_BUILD_ROOT/usr/sbin
 install crontab $RPM_BUILD_ROOT/etc/crontab.d/%{name}
-install autolog.8 $RPM_BUILD_ROOT/usr/man/man8
+install autolog.8 $RPM_BUILD_ROOT%{_mandir}/man8
 install autolog.conf $RPM_BUILD_ROOT/etc
-install autolog.conf.5 $RPM_BUILD_ROOT/usr/man/man5
+install autolog.conf.5 $RPM_BUILD_ROOT%{_mandir}/man5
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* README 
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* README 
 
 %post
 if test -r /var/run/crond.pid; then
@@ -64,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(700,root,root) /usr/sbin/autolog
 %attr(700,root,root) /etc/crontab.d/autolog
 %attr(600,root,root) %config(noreplace) /etc/autolog.conf
-/usr/man/man8/*
+%{_mandir}/man8/*
 
 %changelog
 * Tue Apr  6 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
