@@ -1,8 +1,8 @@
-Summary:	Terminates connections for idle users.
-Summary(pl):	Przerywa po³±czenia bezczynnych u¿ytkowników.
+Summary:	Terminates connections for idle users
+Summary(pl):	Przerywa po³±czenia bezczynnych u¿ytkowników
 Name:		autolog
 Version:	0.34
-Release:	5
+Release:	6
 License:	GPL
 Group:		Daemons
 Group(de):	Server
@@ -10,6 +10,7 @@ Group(pl):	Serwery
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/Admin/idle/%{name}-%{version}.tgz
 Patch0:		%{name}-0.34.debian.diff
 Requires:	/etc/cron.d
+Prereq:		rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -29,7 +30,7 @@ u¿ytkowników, grup, lini tty itp.
 %patch -p1
 
 %build
-%{__make} CFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}"
+%{__make} CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O0 -g}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
