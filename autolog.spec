@@ -9,7 +9,7 @@ Group(pl):	Demony
 Source:		ftp://sunsite.unc.edu/pub/Linux/system/Admin/idle/%{name}-%{version}.tgz
 Patch:		autolog-0.34.debian.diff
 Requires:	/etc/crontab.d
-BuildRoot:	/tmp/%{version}-%{name}-buildroot
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 Autolog is a program to automatically log off users who are idle for a specified
@@ -39,15 +39,18 @@ install autolog.8 $RPM_BUILD_ROOT/usr/man/man8
 install autolog.conf $RPM_BUILD_ROOT/etc
 install autolog.conf.5 $RPM_BUILD_ROOT/usr/man/man5
 
+gzip -9nf README
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(644, root, root, 755) %doc README
-%attr(700, root, root) /usr/sbin/autolog
-%attr(700, root, root) /etc/crontab.d/autolog
-%attr(600, root, root) %config(noreplace) /etc/autolog.conf
-%attr(644, root, man ) /usr/man/man8/*
+%defattr(644,root,root,755) 
+%doc README.gz
+%attr(700,root,root) /usr/sbin/autolog
+%attr(700,root,root) /etc/crontab.d/autolog
+%attr(600,root,root) %config(noreplace) /etc/autolog.conf
+/usr/man/man8/*
 
 %changelog
 * Fri Oct 16 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
