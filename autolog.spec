@@ -47,7 +47,7 @@ gzip -9nf README CHANGES
 
 %post
 /sbin/chkconfig --add autolog
-if [ ! -f /var/lock/subsys/crond ]; then
+if [ ! -f /var/lock/subsys/autolog ]; then
 	/etc/rc.d/init.d/autolog restart >&2
 else
 	echo "Run \"/etc/rc.d/init.d/autolog start\" to activate autolog."
