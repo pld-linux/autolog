@@ -9,7 +9,7 @@ Group(de):	Server
 Group(pl):	Serwery
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/Admin/idle/%{name}-%{version}.tar.gz
 Source1:	autolog.init
-Prereq:		chkconfig
+Prereq:		/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -22,7 +22,7 @@ lines, etc.
 Autolog to program automatycznie wylogowuj±cy u¿ytkowników, którzy nie
 korzystaj± przez okre¶lony czas z terminala. Plik konfiguracyjny
 pozwala na okre¶lenie czasów oraz regu³ postêpowania dla ró¿nych
-u¿ytkowników, grup, lini tty itp.
+u¿ytkowników, grup, linii tty itp.
 
 %prep
 %setup -q
@@ -45,6 +45,9 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/%{name}
 
 gzip -9nf README CHANGES 
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post
 /sbin/chkconfig --add autolog
 if [ ! -f /var/lock/subsys/autolog ]; then
@@ -54,13 +57,12 @@ else
 fi
 
 %preun
-if [ ! -f /var/lock/subsys/autolog ]; then
-	/etc/rc.d/init.d/autolog stop >&2
+if [ "$1" = "0" ]; then
+	if [ ! -f /var/lock/subsys/autolog ]; then
+		/etc/rc.d/init.d/autolog stop >&2
+	fi
+	/sbin/chkconfig --del autolog
 fi
-/sbin/chkconfig --del autolog
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
