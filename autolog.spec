@@ -43,16 +43,14 @@ gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* README
 
 %post
 if test -r /var/run/crond.pid; then
-	/etc/rc.d/init.d/crond stop >&2
-	/etc/rc.d/init.d/crond start >&2
+	/etc/rc.d/init.d/crond restart >&2
 else
 	echo "Run \"/etc/rc.d/init.d/crond start\" to activate autolog."
 fi
 
 %postun
 if test -r /var/run/crond.pid; then
-	/etc/rc.d/init.d/crond stop >&2
-	/etc/rc.d/init.d/crond start >&2
+	/etc/rc.d/init.d/crond restart >&2
 fi
 
 %clean
