@@ -50,7 +50,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add autolog
-if [ ! -f /var/lock/subsys/autolog ]; then
+if [ -f /var/lock/subsys/autolog ]; then
 	/etc/rc.d/init.d/autolog restart >&2
 else
 	echo "Run \"/etc/rc.d/init.d/autolog start\" to activate autolog."
@@ -58,7 +58,7 @@ fi
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ ! -f /var/lock/subsys/autolog ]; then
+	if [ -f /var/lock/subsys/autolog ]; then
 		/etc/rc.d/init.d/autolog stop >&2
 	fi
 	/sbin/chkconfig --del autolog
