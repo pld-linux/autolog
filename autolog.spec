@@ -33,13 +33,13 @@ u¿ytkowników, grup, linii tty itp.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man{5,8},%{_sysconfdir}/rc.d/init.d}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man{5,8},/etc/rc.d/init.d}
 
 install autolog $RPM_BUILD_ROOT%{_sbindir}
 install autolog.conf $RPM_BUILD_ROOT%{_sysconfdir}
 install autolog.8.gz $RPM_BUILD_ROOT%{_mandir}/man8
 install autolog.conf.5.gz $RPM_BUILD_ROOT%{_mandir}/man5
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/%{name}
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -65,5 +65,5 @@ fi
 %doc README CHANGES
 %attr(755,root,root) %{_sbindir}/%{name}
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/autolog.conf
-%attr(754,root,root) %{_sysconfdir}/rc.d/init.d/%{name}
+%attr(754,root,root) /etc/rc.d/init.d/%{name}
 %{_mandir}/man?/*
