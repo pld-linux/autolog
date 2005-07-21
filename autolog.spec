@@ -2,7 +2,7 @@ Summary:	Terminates connections for idle users
 Summary(pl):	Przerywa po³±czenia bezczynnych u¿ytkowników
 Name:		autolog
 Version:	0.40
-Release:	2
+Release:	3
 License:	GPL
 Group:		Daemons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/admin/idle/%{name}-%{version}.tar.gz
@@ -35,13 +35,15 @@ u¿ytkowników, grup, linii tty itp.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man{5,8},/etc/rc.d/init.d}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man{5,8},/etc/rc.d/init.d,/var/log}
 
 install autolog $RPM_BUILD_ROOT%{_sbindir}
 install autolog.conf $RPM_BUILD_ROOT%{_sysconfdir}
 install autolog.8.gz $RPM_BUILD_ROOT%{_mandir}/man8
 install autolog.conf.5.gz $RPM_BUILD_ROOT%{_mandir}/man5
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
+
+touch $RPM_BUILD_ROOT/var/log/autolog.log
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -69,3 +71,4 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/autolog.conf
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
 %{_mandir}/man?/*
+%attr(640,root,root) %ghost /var/log/autolog.log
