@@ -8,7 +8,7 @@ Group:		Daemons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/admin/idle/%{name}-%{version}.tar.gz
 # Source0-md5:	bcca87156acfdce9171acc90b35f9d0d
 Source1:	%{name}.init
-PreReq:		rc-scripts
+Requires:	rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -31,7 +31,9 @@ u¿ytkowników, grup, linii tty itp.
 # Remove stale binaries
 %{__make} clean
 
-%{__make} CFLAGS="%{rpmcflags}"
+%{__make} \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -68,7 +70,7 @@ fi
 %defattr(644,root,root,755)
 %doc README CHANGES
 %attr(755,root,root) %{_sbindir}/%{name}
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/autolog.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/autolog.conf
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
 %{_mandir}/man?/*
 %attr(640,root,root) %ghost /var/log/autolog.log
