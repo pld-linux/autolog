@@ -8,8 +8,9 @@ Group:		Daemons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/admin/idle/%{name}-%{version}.tar.gz
 # Source0-md5:	bcca87156acfdce9171acc90b35f9d0d
 Source1:	%{name}.init
-Requires:	rc-scripts
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,17 +53,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add autolog
-if [ -f /var/lock/subsys/autolog ]; then
-	/etc/rc.d/init.d/autolog restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/autolog start\" to activate autolog."
-fi
+%service autolog restart
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/autolog ]; then
-		/etc/rc.d/init.d/autolog stop >&2
-	fi
+	%service autolog stop
 	/sbin/chkconfig --del autolog
 fi
 
