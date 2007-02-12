@@ -1,5 +1,5 @@
 Summary:	Terminates connections for idle users
-Summary(pl.UTF-8):   Przerywa połączenia bezczynnych użytkowników
+Summary(pl.UTF-8):	Przerywa połączenia bezczynnych użytkowników
 Name:		autolog
 Version:	0.40
 Release:	4
