@@ -1,5 +1,5 @@
 Summary:	Terminates connections for idle users
-Summary(pl):	Przerywa po³±czenia bezczynnych u¿ytkowników
+Summary(pl.UTF-8):   Przerywa poÅ‚Ä…czenia bezczynnych uÅ¼ytkownikÃ³w
 Name:		autolog
 Version:	0.40
 Release:	4
@@ -19,11 +19,11 @@ specified amount of time. A configuration file allows you to specify
 different idle times and logout rules for different users, groups, tty
 lines, etc.
 
-%description -l pl
-Autolog to program automatycznie wylogowuj±cy u¿ytkowników, którzy nie
-korzystaj± przez okre¶lony czas z terminala. Plik konfiguracyjny
-pozwala na okre¶lenie czasów oraz regu³ postêpowania dla ró¿nych
-u¿ytkowników, grup, linii tty itp.
+%description -l pl.UTF-8
+Autolog to program automatycznie wylogowujÄ…cy uÅ¼ytkownikÃ³w, ktÃ³rzy nie
+korzystajÄ… przez okreÅ›lony czas z terminala. Plik konfiguracyjny
+pozwala na okreÅ›lenie czasÃ³w oraz reguÅ‚ postÄ™powania dla rÃ³Å¼nych
+uÅ¼ytkownikÃ³w, grup, linii tty itp.
 
 %prep
 %setup -q
